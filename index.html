@@ -40,6 +40,106 @@
             display: none;
         }
         
+        /* صفحة تسجيل الدخول */
+        .login-page {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .login-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .login-logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+        
+        .login-card h2 {
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        
+        .login-card p {
+            color: #718096;
+            margin-bottom: 30px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+        
+        .input-group label {
+            display: block;
+            color: var(--dark);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+            text-align: right;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .error-message {
+            background: #fed7d7;
+            color: #c53030;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: none;
+        }
+        
         /* الهيدر الرئيسي */
         .main-header {
             background: rgba(255, 255, 255, 0.95);
@@ -77,18 +177,124 @@
             font-size: 24px;
             font-weight: bold;
         }
+        
+        .logo-section h1 {
+            color: var(--dark);
+            font-size: 20px;
+        }
+        
+        .logout-btn {
+            padding: 10px 20px;
+            background: var(--danger);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .logout-btn:hover {
+            background: #e53e3e;
+            transform: translateY(-2px);
+        }
+        
+        .welcome-section {
+            padding: 40px 20px;
+            color: white;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .welcome-section h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .welcome-section p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .stats-grid {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 28px;
+        }
+        
+        .stat-value {
+            font-size: 36px;
+            font-weight: bold;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: #718096;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
-<script>
-(function() {
-  var pwd = prompt("فضلاً أدخل الرقم السري للدخول إلى لوحة الموارد البشرية");
-  if (pwd !== "6504") {
-    alert("الرقم السري غير صحيح!");
-    window.location.href = "about:blank";
-  }
-})();
-</script>
+    <!-- صفحة تسجيل الدخول -->
+    <div id="login-page" class="login-page">
+        <div class="login-card">
+            <div class="login-logo">HR</div>
+            <h2>نظام الموارد البشرية</h2>
+            <p>مدارس الأندلس</p>
+            
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="input-group">
+                    <label for="password">كلمة المرور</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        placeholder="أدخل كلمة المرور"
+                        required
+                        autocomplete="current-password"
+                    >
+                </div>
+                
+                <button type="submit" class="login-btn">دخول</button>
+                
+                <div id="error-message" class="error-message">
+                    كلمة المرور غير صحيحة!
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- المحتوى الرئيسي -->
     <div id="main-content">
         <header class="main-header">
             <div class="header-content">
@@ -96,28 +302,90 @@
                     <div class="logo">HR</div>
                     <h1>نظام الموارد البشرية المتكامل</h1>
                 </div>
+                <button onclick="handleLogout()" class="logout-btn">تسجيل الخروج</button>
             </div>
         </header>
         
-        <!-- محتوى الصفحة هنا -->
-        <div style="padding: 20px; color: white; text-align: center; margin-top: 50px;">
+        <div class="welcome-section">
             <h2>مرحباً بك في نظام الموارد البشرية</h2>
-            <p>مدارس الأندلس</p>
+            <p>مدارس الأندلس - إدارة شاملة لجميع شؤون الموظفين</p>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-value">150</div>
+                <div class="stat-label">إجمالي الموظفين</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">📊</div>
+                <div class="stat-value">12</div>
+                <div class="stat-label">الأقسام</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">✅</div>
+                <div class="stat-value">145</div>
+                <div class="stat-label">موظف نشط</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">📅</div>
+                <div class="stat-value">5</div>
+                <div class="stat-label">في إجازة</div>
+            </div>
         </div>
     </div>
     
     <script>
-        // Password protection
-        (function() {
-            var password = "6504";
-            var enteredPassword = prompt("الرجاء إدخال كلمة السر للدخول:");
-            if (enteredPassword === password) {
+        const CORRECT_PASSWORD = "6504";
+        
+        // التعامل مع تسجيل الدخول
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const passwordInput = document.getElementById('password');
+            const errorMessage = document.getElementById('error-message');
+            const enteredPassword = passwordInput.value;
+            
+            if (enteredPassword === CORRECT_PASSWORD) {
+                // إخفاء صفحة تسجيل الدخول وإظهار المحتوى
+                document.getElementById('login-page').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
+                
+                // حفظ حالة تسجيل الدخول (اختياري)
+                sessionStorage.setItem('isLoggedIn', 'true');
             } else {
-                alert("كلمة السر غير صحيحة!");
-                window.location.href = "about:blank";
+                // إظهار رسالة الخطأ
+                errorMessage.style.display = 'block';
+                passwordInput.value = '';
+                passwordInput.focus();
+                
+                // إخفاء رسالة الخطأ بعد 3 ثواني
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 3000);
             }
-        })();
+        }
+        
+        // التعامل مع تسجيل الخروج
+        function handleLogout() {
+            if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
+                sessionStorage.removeItem('isLoggedIn');
+                document.getElementById('main-content').style.display = 'none';
+                document.getElementById('login-page').style.display = 'flex';
+                document.getElementById('password').value = '';
+            }
+        }
+        
+        // التحقق من حالة تسجيل الدخول عند تحميل الصفحة
+        window.addEventListener('load', function() {
+            if (sessionStorage.getItem('isLoggedIn') === 'true') {
+                document.getElementById('login-page').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+            }
+        });
     </script>
 </body>
 </html>
