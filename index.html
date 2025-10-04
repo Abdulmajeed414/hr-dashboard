@@ -80,6 +80,15 @@
     </style>
 </head>
 <body>
+<script>
+(function() {
+  var pwd = prompt("فضلاً أدخل الرقم السري للدخول إلى لوحة الموارد البشرية");
+  if (pwd !== "6504") {
+    alert("الرقم السري غير صحيح!");
+    window.location.href = "about:blank";
+  }
+})();
+</script>
     <div id="main-content">
         <header class="main-header">
             <div class="header-content">
